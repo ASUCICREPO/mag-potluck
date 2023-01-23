@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Hospital</title>
+    <script src="https://d2ib9mleomms83.cloudfront.net/index.js"></script>
+    <link rel="stylesheet" href="https://d2ib9mleomms83.cloudfront.net/index.css">
+</head>
+<body>
+
+<script>
+    window.onload = function () {
+        const id = extractIdFromURL()
+        getPatientDetails(id)
+    };
+
+
+</script>
+<form>
+    <table>
+        <tr>
+            <td><label>First Name :</label></td>>
+            <td><input type="text" id="fName"></td>
+        </tr>
+        <tr>
+            <td><label>Middle Name :</label></td>>
+            <td><input type="text" id="mName"></td>
+        </tr>
+        <tr>
+            <td><label>Last Name :</label></td>>
+            <td><input type="text" id="lName"></td>
+        </tr>
+        <tr>
+            <td><label>Transport Provider :</label></td>>
+            <td><input type="text" id="tProvider"></td>
+        </tr>
+    </table>
+<!--    <button type="button"-->
+<!--            onclick="callAPI(document.getElementById('fName').value,document.getElementById('lName').value)">Call API-->
+<!--    </button>-->
+<!--    <button type="button" onclick="extractIdFromURL()">get id</button>-->
+</form>
+</body>
+</html>
