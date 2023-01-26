@@ -3,7 +3,7 @@ from botocore.exceptions import ClientError
 import json
 import os
 
-SENDER = "aakash.mathai@asu.edu"
+SENDER = os.environ['SENDER_EMAIL']
 GET_USER_FN_ARN = os.environ['GET_USER_FN_ARN']
 
 

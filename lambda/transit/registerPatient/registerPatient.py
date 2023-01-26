@@ -28,6 +28,7 @@ def lambda_handler(event, context):
     f_name = event['f_name']
     m_name = event['m_name']
     l_name = event['l_name']
+    h_name = event['h_name']
     initial_entry_ts = event['initial_entry_ts']
     access_token = event['access_token']
 
@@ -79,6 +80,7 @@ def lambda_handler(event, context):
                     'transitprovidername': transit_provider_name,
                     'transitprovideremail': transit_provider_email,
                     'transitproviderphone': transit_provider_phone,
+                    'healthcareprovidername': h_name,
                     'initialentrytimestamp': initial_entry_ts
                 })
             data = {

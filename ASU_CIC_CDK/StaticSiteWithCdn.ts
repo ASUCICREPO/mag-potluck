@@ -11,6 +11,7 @@ export default class StaticSiteWithCdn {
         publicReadAccess: true,
         removalPolicy: cdk.RemovalPolicy.DESTROY,
         websiteIndexDocument: "index.html",
+        websiteErrorDocument:"index.html",
         autoDeleteObjects: true
     }
     id: string
@@ -33,6 +34,7 @@ export default class StaticSiteWithCdn {
             sources: [s3Deployment.Source.asset(assetPath)],
             destinationBucket: bucket,
             retainOnDelete: false
+
         });
     }
 

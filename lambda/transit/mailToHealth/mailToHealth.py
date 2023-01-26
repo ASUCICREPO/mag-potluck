@@ -3,7 +3,7 @@ from botocore.exceptions import ClientError
 import json
 import os
 
-SENDER = "aakash.mathai@asu.edu"
+SENDER = os.environ['SENDER_EMAIL']
 GET_USER_FN_ARN = os.environ['GET_USER_FN_ARN']
 
 
@@ -28,15 +28,18 @@ def lambda_handler(event, context):
     link = event['link']
     name = event['patient_name']
     access_token = event['access_token']
-
+    healthcare_name = event['healthcareName']
     user = validate_user(access_token)
     if user:
         subject = "Please Confirm : Appointment for {}".format(name)
         message = '''Hello {},
-Please confirm the appointment for {} by clicking on this link:
+A transportation service was scheduled for your patient, {}, for their appointment with you.
+
+Please save this to your appointment records. If the appointment is rescheduled or cancelled please use the link below to notify the transportation provider of the changes:
 {}
+
 Regards,
-{}'''.format(str(recipient).split('@')[0], name, link, user['data']['name'])
+{}'''.format(healthcare_name, name, link, user['data']['name'])
         client = boto3.client('ses')
         try:
             response = client.send_email(
@@ -76,3 +79,4 @@ Regards,
             },
             "body": "UNAUTHORIZED"
         }
+
