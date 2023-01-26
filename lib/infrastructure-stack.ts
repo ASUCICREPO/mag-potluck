@@ -1,8 +1,6 @@
 import * as cdk from 'aws-cdk-lib';
 import {Construct} from 'constructs';
 import * as dynamodb from "aws-cdk-lib/aws-dynamodb";
-import * as apigw from "aws-cdk-lib/aws-apigateway";
-import * as cr from 'aws-cdk-lib/custom-resources'
 import * as iam from 'aws-cdk-lib/aws-iam'
 import * as cognito from 'aws-cdk-lib/aws-cognito'
 import {OAuthScope, UserPoolClientIdentityProvider} from "aws-cdk-lib/aws-cognito";
@@ -18,20 +16,12 @@ export class InfrastructureStack extends cdk.Stack {
 
         const config = yaml.parse(fs.readFileSync('configuration.yaml', 'utf8'))
 
-        const healthSiteDeployer = new StaticSiteWithCdn(this, 'magpotluckhealth')
-        healthSiteDeployer.deploy("web/health")
-
-        const transitSiteDeployer = new StaticSiteWithCdn(this, 'magpotlucktransit')
-        transitSiteDeployer.deploy("web/transit")
+        const websitedeployer = new StaticSiteWithCdn(this, config.ID + 'web')
+        websitedeployer.deploy("web")
 
         const table = new dynamodb.Table(this, 'Table', {
             removalPolicy: cdk.RemovalPolicy.DESTROY,
             partitionKey: {name: 'id', type: dynamodb.AttributeType.STRING},
-        });
-
-        const config_db = new dynamodb.Table(this, 'ConfigTable', {
-            removalPolicy: cdk.RemovalPolicy.DESTROY,
-            partitionKey: {name: 'key', type: dynamodb.AttributeType.STRING},
         });
 
         const userPool = new cognito.UserPool(this, config.userPoolName, {
@@ -53,12 +43,12 @@ export class InfrastructureStack extends cdk.Stack {
             accountRecovery: cognito.AccountRecovery.EMAIL_ONLY,
             removalPolicy: cdk.RemovalPolicy.DESTROY,
             standardAttributes: {
-                fullname:{
-                    required:true,
+                fullname: {
+                    required: true,
                     mutable: false
                 },
-                phoneNumber:{
-                    required:true,
+                phoneNumber: {
+                    required: true,
                     mutable: false
                 }
             }
@@ -69,15 +59,16 @@ export class InfrastructureStack extends cdk.Stack {
             oAuth: {
                 flows: {authorizationCodeGrant: true},
                 scopes: [OAuthScope.OPENID, OAuthScope.custom('email'), OAuthScope.custom('phone')],
-                callbackUrls: ["https://" + transitSiteDeployer.getCdn().domainName]
+                callbackUrls: ["https://" + websitedeployer.getCdn().domainName]
             },
             supportedIdentityProviders: [
                 UserPoolClientIdentityProvider.COGNITO,
             ],
-            authFlows:{
-                adminUserPassword:true,
-                custom:true,
-                userPassword:true
+            authFlows: {
+                adminUserPassword: true,
+                custom: true,
+                userPassword: true,
+                userSrp: true
             }
         })
 
@@ -85,7 +76,7 @@ export class InfrastructureStack extends cdk.Stack {
         lambdaDeployer.deploy('getuser', 'lambda/transit/userManagement/getUser/getUser', null, null, null)
         lambdaDeployer.deploy('registerpatient', 'lambda/transit/registerPatient/registerPatient', 'transit/registerpatient', 'POST', {
             DYNAMODB_TABLE: table.tableName,
-            CONFIG_DB: config_db.tableName,
+            BASE_URL: "https://" + websitedeployer.getCdn().domainName + "/PatientDetails/",
             GET_USER_FN_ARN: lambdaDeployer.getLambdaDeployment('getuser').functionArn
         })
         lambdaDeployer.deploy('signuptransit', 'lambda/transit/userManagement/signupUser/signupUser', 'transit/account/signupuser', 'POST', {
@@ -120,7 +111,6 @@ export class InfrastructureStack extends cdk.Stack {
             DYNAMODB_TABLE: table.tableName
         })
 
-        
 
         lambdaDeployer.getLambdaDeployment('transitlogin').addToRolePolicy(
             new iam.PolicyStatement({
@@ -160,73 +150,7 @@ export class InfrastructureStack extends cdk.Stack {
         lambdaDeployer.getLambdaDeployment('transitlogin').addToRolePolicy(lambdaCallGetUserPolicy)
 
         table.grantReadWriteData(lambdaDeployer.getLambdaDeployment('registerpatient'));
-        config_db.grantReadData(lambdaDeployer.getLambdaDeployment('registerpatient'));
         table.grantReadData(lambdaDeployer.getLambdaDeployment('getpatientdetails'));
         table.grantReadWriteData(lambdaDeployer.getLambdaDeployment('updatepatient'))
-
-        const rootApi = lambdaDeployer.getRootApi()
-
-        if (rootApi != null) {
-            const enableCors: apigw.CorsOptions = {
-                allowHeaders: apigw.Cors.DEFAULT_HEADERS,
-                allowOrigins: apigw.Cors.ALL_ORIGINS,
-                allowMethods: apigw.Cors.ALL_METHODS
-            }
-            const webpageApi = rootApi.root.addResource('{pid}', {defaultCorsPreflightOptions: enableCors})
-            const pid_template = {
-                "id": "$input.params('id')"
-            }
-            webpageApi.addMethod('GET', new apigw.HttpIntegration(healthSiteDeployer.getBucket().bucketWebsiteUrl, {
-                proxy: false,
-                options: {
-                    requestParameters: {
-                        "integration.request.path.pid": "method.request.path.pid"
-                    },
-                    requestTemplates: {
-                        "application/json": JSON.stringify(pid_template)
-                    },
-                    integrationResponses: [{
-                        statusCode: '200',
-                        responseParameters: {
-                            'method.response.header.Access-Control-Allow-Origin': "'*'"
-                        }
-                    }]
-                }
-            }), {
-                requestParameters: {
-                    "method.request.path.pid": true
-                },
-                methodResponses: [{
-                    statusCode: '200',
-                    responseParameters: {
-                        'method.response.header.Content-Type': true,
-                        'method.response.header.Access-Control-Allow-Origin': true
-                    },
-                    responseModels: {'text/html': apigw.Model.EMPTY_MODEL}
-                }]
-            })
-        }
-
-        new cr.AwsCustomResource(this, 'initTable', {
-            onCreate: {
-                service: 'DynamoDB',
-                action: 'putItem',
-                parameters: {
-                    TableName: config_db.tableName,
-                    Item: {
-                        key:
-                            {
-                                S: "base_url"
-                            },
-                        value:
-                            {
-                                S: rootApi?.url
-                            }
-                    }
-                },
-                physicalResourceId: cr.PhysicalResourceId.of(config_db.tableName + '_initialization')
-            },
-            policy: cr.AwsCustomResourcePolicy.fromSdkCalls({resources: cr.AwsCustomResourcePolicy.ANY_RESOURCE}),
-        });
     }
 }

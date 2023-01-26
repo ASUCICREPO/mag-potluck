@@ -5,7 +5,10 @@ from hashlib import md5
 
 GET_USER_FN_ARN = os.environ['GET_USER_FN_ARN']
 TABLE = os.environ['DYNAMODB_TABLE']
-CONFIG_TABLE = os.environ['CONFIG_DB']
+BASE_URL = os.environ['BASE_URL']
+
+
+# CONFIG_TABLE = os.environ['CONFIG_DB']
 
 
 def validate_user(access_token):
@@ -39,17 +42,17 @@ def lambda_handler(event, context):
         transit_provider_phone = user['data']['phone_number']
         dynamodb = boto3.resource('dynamodb')
 
-        config_db = dynamodb.Table(CONFIG_TABLE)
-        response = config_db.get_item(
-            Key={
-                'key': 'base_url'
-            }
-        )
-        base_url = response['Item']['value']
+        # config_db = dynamodb.Table(CONFIG_TABLE)
+        # response = config_db.get_item(
+        #     Key={
+        #         'key': 'base_url'
+        #     }
+        # )
+        # base_url = response['Item']['value']
 
         table = dynamodb.Table(TABLE)
 
-        id = md5(str(f_name + m_name + l_name).encode()).hexdigest()
+        id = md5(str(f_name + m_name + l_name + h_name).encode()).hexdigest()
         response = table.get_item(
             Key={
                 'id': id
@@ -69,7 +72,7 @@ def lambda_handler(event, context):
             }
         else:
             existing_patient = False
-            link = base_url + id
+            link = BASE_URL + id
             response = table.put_item(
                 Item={
                     'id': id,
