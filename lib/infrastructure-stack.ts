@@ -4,9 +4,10 @@ import * as dynamodb from "aws-cdk-lib/aws-dynamodb";
 import * as iam from 'aws-cdk-lib/aws-iam'
 import * as cognito from 'aws-cdk-lib/aws-cognito'
 import {OAuthScope, UserPoolClientIdentityProvider} from "aws-cdk-lib/aws-cognito";
+import {CfnOutput, CfnOutputProps} from "aws-cdk-lib";
 import * as fs from 'fs'
-import * as yaml from 'yaml'
 
+import * as yaml from 'yaml'
 import LambdaWithApi from '../ASU_CIC_CDK/LambdaWithApi'
 import StaticSiteWithCdn from "../ASU_CIC_CDK/StaticSiteWithCdn";
 
@@ -17,7 +18,7 @@ export class InfrastructureStack extends cdk.Stack {
         const config = yaml.parse(fs.readFileSync('configuration.yaml', 'utf8'))
 
         const websitedeployer = new StaticSiteWithCdn(this, config.ID + 'web')
-        websitedeployer.deploy("web")
+        websitedeployer.deploy("web/build")
 
         const table = new dynamodb.Table(this, 'Table', {
             removalPolicy: cdk.RemovalPolicy.DESTROY,
@@ -152,5 +153,8 @@ export class InfrastructureStack extends cdk.Stack {
         table.grantReadWriteData(lambdaDeployer.getLambdaDeployment('registerpatient'));
         table.grantReadData(lambdaDeployer.getLambdaDeployment('getpatientdetails'));
         table.grantReadWriteData(lambdaDeployer.getLambdaDeployment('updatepatient'))
+
+        new CfnOutput(this, 'API_URL', <CfnOutputProps>{value: lambdaDeployer.getRootApi()?.url});
+        new CfnOutput(this, 'WEBSITE_URL', <CfnOutputProps>{value: websitedeployer.getCdn().domainName});
     }
 }
