@@ -1,0 +1,25 @@
+:root{
+    --maincolor:#4FA7BF;
+}
+
+footer{
+    position: fixed;
+    bottom: 0;
+    background-color: var(--maincolor);
+    width: 100%;
+}
+
+
+.container {
+    width: 95%;
+    height: 90px;
+    background-color: var(--maincolor);
+    max-width: 1200 px;
+    align-items: center;
+    text-decoration: none;
+}
+
+.container-flex {
+
+    align-items: center;
+}

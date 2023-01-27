@@ -1,0 +1,46 @@
+:root{
+    --maincolor:#4FA7BF;
+}
+
+header {
+    background-color: var(--maincolor);
+}
+
+.container {
+    width: 95%;
+    height: 90px;
+    background-color: var(--maincolor);
+    max-width: 1200 px;
+    align-items: center;
+    text-decoration: none;
+}
+
+.container-flex {
+
+    align-items: center;
+}
+
+.pot-header {
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-family: 'Helvetica';
+    padding: 10px;
+    margin-left: 1.5em;
+}
+
+.pot-header p{
+    margin: 0 2em;
+    color: black;
+    font-size:xx-large;
+    padding-top: 5px ;
+}
+
+@media screen and (max-width: 768px) {
+html{
+    font-size: 13px;
+}
+
+.container-flex{
+    flex-direction: column;
+}
+}
