@@ -1,11 +1,11 @@
 import React from "react";
-import '../css/Footer.css'
+import '../css/Navbar.css'
 
 const Footer = () => {
     return(
         <>
         <footer>
-            <div className="container container-flex">
+            <div className="container">
             </div>
         </footer>
         </>

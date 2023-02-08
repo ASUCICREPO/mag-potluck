@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
-import './GlobalVariables'
+import swal from 'sweetalert';
+import './GlobalVariables';
 
 const ConfirmSignUp = () => {
     const [code, setCode] = useState("");
@@ -30,7 +31,13 @@ const ConfirmSignUp = () => {
         .then((data) => {
             console.log(data);
             if (data.error) {
-                alert(data.message)
+                swal({
+                    title: "Error!",
+                    text: data.message,
+                    icon: "error",
+                    button: "Try Again.",
+                  });
+                
             } else {
                 setNavigate(true);
             }

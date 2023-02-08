@@ -3,11 +3,14 @@
 }
 
 header {
+    position: fixed;
+    top: 0;
     background-color: var(--maincolor);
+    width: 100%;
 }
 
 .container {
-    width: 95%;
+    width:100%;
     height: 90px;
     background-color: var(--maincolor);
     max-width: 1200 px;
@@ -15,10 +18,6 @@ header {
     text-decoration: none;
 }
 
-.container-flex {
-
-    align-items: center;
-}
 
 .pot-header {
     text-decoration: none;
@@ -35,12 +34,21 @@ header {
     padding-top: 5px ;
 }
 
-@media screen and (max-width: 768px) {
-html{
-    font-size: 13px;
+footer{
+    position: fixed;
+    bottom: 0;
+    background-color: var(--maincolor);
+    width: 100%;
 }
 
-.container-flex{
-    flex-direction: column;
-}
+
+@media all and (max-width: 768px) {
+    html{
+        font-size: 13px;
+    }
+
+    .container-flex{
+        flex-direction: column;
+        width: 100%;
+    }
 }

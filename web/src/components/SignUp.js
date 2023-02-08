@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Navigate } from "react-router-dom";
 import './GlobalVariables';
 import '../css/Home.css'
+import swal from 'sweetalert';
 
 
 const SignUp = () => {
@@ -33,18 +34,17 @@ const SignUp = () => {
                 localStorage.setItem('username', email);
                 setNavigate(true);
 
-                console.log(navigate)
             } else {
-                alert(data.message)
+                swal({
+                    title: "Error!",
+                    text: data.message,
+                    icon: "error",
+                    button: "Try Again.",
+                  });
             }
 
         });
-        // UserPool.signUp(email, password, name, phone, [], null, (err, data) => {
-        //     if (err) {
-        //         console.error(err);
-        //     }
-        //     console.log(data);
-        // });
+
     };
 
     if(navigate) {

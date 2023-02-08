@@ -26,11 +26,6 @@ const PatientReschedule = () => {
         })
         .then(res=>{
             console.log(res.data)
-            
-            // console.log(newdate)
-            // const newtime = (data.time).value
-            // // new Date(data.time).toLocaleTimeString([],options); 
-            // console.log(data.time.value)
 
         })
         let PatientFinalPath = generatePath('/PatientFinal/:id', { id });
@@ -88,7 +83,6 @@ const PatientReschedule = () => {
         const newdata = { ...data }
         newdata[e.target.id] = e.target.value
         setData(newdata)
-        console.log(newdata)
     }
 
     return(

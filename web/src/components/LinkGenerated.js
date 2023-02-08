@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaCopy } from 'react-icons/fa';
 import "./GlobalVariables";
-import '../css/LinkPage.css'
-const PatientDetails = () => {
+import '../css/LinkPage.css';
+import swal from 'sweetalert';
+
+const LinkGenerated = () => {
     let navigate = useNavigate();
     const [hEmail, setHEmail] = useState("");
 
@@ -24,7 +26,7 @@ const PatientDetails = () => {
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
         var raw =  JSON.parse(localStorage.getItem('patientdata'));
-        var topost = JSON.stringify({"recipient": hEmail, "link": raw.link, "patient_name": raw.name,"healthcareName": raw.healthcareName, "access_token": localStorage.getItem('token')});
+        var topost = JSON.stringify({"recipient": hEmail, "link": raw.link, "patient_name": raw.name,"healthcareName": raw.healthcareName, "access_token": localStorage.getItem('access_token')});
         var requestOptions = {
             method: 'POST',
             headers: myHeaders,
@@ -35,11 +37,21 @@ const PatientDetails = () => {
         fetch(global.apiEndpoints.transitemail , requestOptions)
         .then((response) => response.json())
         .then((data) => {
-            console.log(data);
-            if (data.statusCode) {
-                alert("Email Sent!")
+            console.log(data.statusCode);
+            if (data.statusCode == 200) {
+                swal({
+                    title: "",
+                    text: "Email Sent!",
+                    icon: "success",
+                    button: "Done.",
+                  });
             } else {
-                alert(data.errorMessage)
+                swal({
+                    title: "Error!",
+                    text: data.errorMessage,
+                    icon: "error",
+                    button: "Try Again.",
+                  });
             }
 
         });
@@ -63,4 +75,4 @@ const PatientDetails = () => {
     )
 
 }
-export default PatientDetails;
+export default LinkGenerated;

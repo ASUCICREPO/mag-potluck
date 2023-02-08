@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import '../css/LinkPage.css'
+import '../css/LinkPage.css';
 import { Navigate, useNavigate } from "react-router-dom";
-import './GlobalVariables'
+import swal from 'sweetalert';
+import './GlobalVariables';
 
 
 const LinkPage = () => {
@@ -26,7 +27,6 @@ const LinkPage = () => {
         event.preventDefault();
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
-        console.log(localStorage.getItem('access_token'))
         var raw = JSON.stringify({"f_name": fName, "m_name": mName, "l_name": lName, "h_name": hName, "access_token": localStorage.getItem('access_token'), "initial_entry_ts": Date.now().toString()});
         var requestOptions = {
             method: 'POST',
@@ -45,7 +45,12 @@ const LinkPage = () => {
                 localStorage.setItem('patientdata', JSON.stringify(patientdata));
                 setNavigate(true);
             } else {
-                alert(data.errorMessage)
+                swal({
+                    title: "Error!",
+                    text: data.errorMessage,
+                    icon: "error",
+                    button: "Try Again.",
+                  });
             }
 
         });
