@@ -1,4 +1,5 @@
 .top-section {
+    margin-top: -10px;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -7,7 +8,7 @@
 
 .info-header p {
     /* margin: 20px 40px; */
-    margin-top: 50px;
+    margin-top: 100px;
     margin-left: 40px;
     margin-right: 40px;
     padding: 0 100px;
@@ -38,9 +39,9 @@
     color: grey;
     margin-top: auto;
     margin-bottom: 0;
-    padding-top: 60px;
+    padding-top: 45px;
     text-decoration: none;
-}
+}   
 
 .middle-heading p {
     transition: transform 80ms ease-in;
@@ -53,7 +54,7 @@
 .bottom-info {
     text-decoration: none;
     color: grey;
-    margin: 0 590px;
+    margin: 0 auto;
     width: fit-content;
     font-family: 'Helvetica';
     font-size: 25px;
