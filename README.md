@@ -1,7 +1,7 @@
 # Mag-Potluck
 
 ## Project Overview
-A serverless web application that eases the communication between health care providers and transport agencies in rural areas. 
+Mag potluck is a serverless web application that eases the communication between health care providers and transport agencies in rural areas. 
 This aims to help the elderly to avoid fruitless hospital visits in case of a cancelled or postponed appointment.
 ## Description
 Older adults in rural communities overcome long distances, limited
@@ -16,7 +16,7 @@ Healthcare Providers.  This allows unnecessary trips to be taken and time
 and resources to be wasted, both on the side of the patient and the
 transportation provider.
 ## High Level Architecture
-
+![Architecture](Docs/Architecture-Diagram.jpeg)
 ## Deployment 
 ### Linux/Unix
 1. Install dependencies
