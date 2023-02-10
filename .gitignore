@@ -4,6 +4,7 @@ node_modules
 web/node_modules
 web/build/static/*
 web/build/asset-manifest.json
+web/package-lock.json
 
 # CDK asset staging directory
 .cdk.staging
