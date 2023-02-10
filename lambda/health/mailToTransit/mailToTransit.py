@@ -30,7 +30,7 @@ def lambda_handler(event, context):
     action = event['action']
     appointment_date = event['initial_date']
     healthcare_name = event['healthcare_name']
-    healthcare_number = event['healthcare_number']
+    # healthcare_number = event['healthcare_number']
     # access_token = event['access_token']
 
     subject = "Attention: Changes in appointment for {}".format(name)
@@ -38,16 +38,16 @@ def lambda_handler(event, context):
     if "cancel" == action:
         message = '''
         Hello {},
-        The appointment for {} on {} has been cancelled. If more information is needed, please contact {} at {}.
+        The appointment for {} on {} has been cancelled. If more information is needed, please contact {}.
         Thank you.
-        '''.format(t_provider, name, appointment_date, healthcare_name, healthcare_number)
+        '''.format(t_provider, name, appointment_date, healthcare_name)
     elif "update" == action:
         new_date = event['new_date']
         message = '''
         Hello {},
-        The appointment for {} on {} has been changed to {} and remains in person. If the new appointment doesn't align with your schedule, please contact {} at {} .
+        The appointment for {} on {} has been changed to {} and remains in person. If the new appointment doesn't align with your schedule, please contact {}.
         Thank you.
-        '''.format(t_provider, name, appointment_date, new_date, healthcare_name, healthcare_number)
+        '''.format(t_provider, name, appointment_date, new_date, healthcare_name)
     else:
         return {
             "statusCode": 200,

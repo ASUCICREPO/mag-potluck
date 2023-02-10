@@ -10,3 +10,5 @@ web/build/asset-manifest.json
 cdk.out
 .idea
 cdk-outputs.json
+
+lambda/experimental/*

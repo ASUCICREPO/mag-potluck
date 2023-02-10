@@ -27,7 +27,7 @@ const PatientCancel = () => {
             patient_name: data.firstname + ' ' + data.middelname + ' ' + data.lastname ,
             initial_date: origappointment,
             healthcare_name: data.healthcareprovidername,
-            healthcare_number: "+13456789234"
+            //healthcare_number: "+000000000000000"
         })
         .then(() => {
             localStorage.setItem('action', "cancelled");
