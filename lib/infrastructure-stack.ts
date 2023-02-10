@@ -16,9 +16,9 @@ export class InfrastructureStack extends cdk.Stack {
         super(scope, id, props);
 
         const config = yaml.parse(fs.readFileSync('configuration.yaml', 'utf8'))
-
         const websitedeployer = new StaticSiteWithCdn(this, config.ID + 'web')
         websitedeployer.deploy("web/build")
+
 
         const table = new dynamodb.Table(this, 'Table', {
             removalPolicy: cdk.RemovalPolicy.DESTROY,
@@ -74,16 +74,20 @@ export class InfrastructureStack extends cdk.Stack {
         })
 
         const lambdaDeployer = new LambdaWithApi(this, config.ID, null)
+
         lambdaDeployer.deploy('getuser', 'lambda/transit/userManagement/getUser/getUser', null, null, null)
         lambdaDeployer.deploy('registerpatient', 'lambda/transit/registerPatient/registerPatient', 'transit/registerpatient', 'POST', {
             DYNAMODB_TABLE: table.tableName,
             BASE_URL: "https://" + websitedeployer.getCdn().domainName + "/PatientDetails/",
             GET_USER_FN_ARN: lambdaDeployer.getLambdaDeployment('getuser').functionArn
         })
+
+        // lambdaDeployer.addCloudFront(websitedeployer.getCdn())
         lambdaDeployer.deploy('signuptransit', 'lambda/transit/userManagement/signupUser/signupUser', 'transit/account/signupuser', 'POST', {
             USER_POOL_ID: userPool.userPoolId,
             CLIENT_ID: userPoolClient.userPoolClientId
         })
+
         lambdaDeployer.deploy('signuptransitconfirm', 'lambda/transit/userManagement/confirmEmail/confirmEmail', 'transit/account/confirmemail', 'POST', {
             USER_POOL_ID: userPool.userPoolId,
             CLIENT_ID: userPoolClient.userPoolClientId
@@ -111,7 +115,6 @@ export class InfrastructureStack extends cdk.Stack {
         lambdaDeployer.deploy('updatepatient', 'lambda/health/updatePatientAppointment/updatePatientAppointment', 'health/updatepatient', 'POST', {
             DYNAMODB_TABLE: table.tableName
         })
-
 
         lambdaDeployer.getLambdaDeployment('transitlogin').addToRolePolicy(
             new iam.PolicyStatement({
