@@ -95,6 +95,9 @@ Healthcare providers, or can directly be sent directly as an email from this pag
 
 1. Aakash Mathai
    - LinkedIn: https://www.linkedin.com/in/aakash-mathai/
-   - GitHub: github.com/aakashmathai
+   - GitHub: https://github.com/aakashmathai
+2. Anjali Srivastava
+   - LinkedIn: https://www.linkedin.com/in/anjalisrivastava/
+   - GitHub: https://github.com/AnjaliSrivastava29
 
 ## License(MIT) 
