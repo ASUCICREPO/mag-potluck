@@ -22,18 +22,53 @@ transportation provider.
 1. Install dependencies
     ```shell
         sudo apt-get update
+        sudo apt install curl
         sudo apt-get install awscli
         sudo apt-get -y install nodejs
         sudo apt install -y npm
         npm install -g n
         n 18.13.0
     ```
-2. Run the script for deployment
+2. Restart the terminal
+3. Configure AWS credentials in your system
+4. Clone or Download the Zip of this repository
+5. Run commands to install NPM dependencies once you are inside the directory
+   ```shell
+      npm install -g aws-cdk
+      npm install ts-node typescript --save-dev --global
+      npm install
+   ```
+6. Provide execution permission to the `Deploy.ts` script
+   ```shell
+      chmod +x ./Deploy.ts
+   ```
+7. Run the script for deployment
    ```shell
       ./deploy.ts
    ```
+8. The deployment will take around 15 minutes to complete. The screen might look frozen at times, but be patient. 
+9. Once the deployment is complete, we can obtain the URL for the deployed website from the output of the `Deploy.ts` script
+   ![Deployment Output](Docs/deployment_outputs.png)
 
 ## User Guide / How to use
+### Transit Service Provider
+1. Launch a browser and got to the URL.
+2. By default, The `login` page will be loaded.
+   ![Architecture](Docs/login.png)
+3. Append `/signup` to the URL to load the `signup` page
+   ![Architecture](Docs/signup.png)
+4. Fill in the required details, and press the `SignUp` button. This will take you to the `email verification` page.
+   ![Architecture](Docs/verify_email.png)
+5. Input the One Time Password that you have got in your email used for registration in step 5.
+6. Now you have successfully created your account as a transit provider in this web portal.
+7. Once the email is confirmed, you will be redirected to the `login` page (Shown in step 3).
+8. Login here using the `email` and `password` you used for registration in step 5.
+9. Once you have successfully logged in, you will land on the page to input patient details.
+   ![Architecture](Docs/patient_page.png)
+10. Fill in all the details for the patient and click on the `Generate Link` button.
+11. The patient's unique URL and an option to email the URL will be displayed. The URL can be copied and sent to
+Healthcare providers, or can directly be sent directly as an email from this page.
+    ![Architecture](Docs/patient_link.png)
 
 ## Change Log
 
