@@ -57,7 +57,7 @@ transportation provider.
 1. Launch a browser and got to the URL.
 2. By default, The `login` page will be loaded.
    ![Login](Docs/login.png)
-3. Append `/signup` to the URL to load the `signup` page
+3. Go to the `signup` URL to register a new transit user.
    ![Signup](Docs/signup.png)
 4. Fill in the required details, and press the `SignUp` button. This will take you to the `email verification` page.
    ![Verify email](Docs/verify_email.png)
