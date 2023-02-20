@@ -30,7 +30,7 @@ const PatientCancel = () => {
             //healthcare_number: "+000000000000000"
         })
         .then(() => {
-            localStorage.setItem('action', "cancelled");
+            sessionStorage.setItem('action', "cancelled");
             navigate(PatientFinalPath)
 
         });
@@ -41,7 +41,7 @@ const PatientCancel = () => {
     const navigate = useNavigate();
 
     var options = { year: 'numeric', month: 'long', day: 'numeric' };
-    const origappointment = new Date(localStorage.getItem('appointment')).toLocaleDateString([],options);
+    const origappointment = new Date(sessionStorage.getItem('appointment')).toLocaleDateString([],options);
     const [appointment_date, setAppointmentDate] = useState(origappointment);
      
     useEffect(() => {

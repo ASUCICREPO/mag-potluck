@@ -8,7 +8,7 @@ const ConfirmSignUp = () => {
     const [navigate, setNavigate] = useState("");
     useEffect (() => {
         
-        if(!localStorage.getItem('username')){
+        if(!sessionStorage.getItem('username')){
             navigate('/SignUp');
         }
     }, [])
@@ -18,7 +18,7 @@ const ConfirmSignUp = () => {
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
     
-        var raw = JSON.stringify({"username": localStorage.getItem('username'), "code":code });
+        var raw = JSON.stringify({"username": sessionStorage.getItem('username'), "code":code });
         var requestOptions = {
             method: 'POST',
             headers: myHeaders,

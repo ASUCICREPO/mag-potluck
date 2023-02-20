@@ -16,7 +16,7 @@ const PatientModify = () => {
 
     var options = { year: 'numeric', month: 'long', day: 'numeric' };
     const appointment_date = 
-    new Date(localStorage.getItem('appointment')).toLocaleDateString([],options);     
+    new Date(sessionStorage.getItem('appointment')).toLocaleDateString([],options);     
 
     useEffect(() => {
     apiGet();

@@ -31,7 +31,8 @@ const Home = () => {
         .then((res) => {
             console.log(res);
             if (res.success) {
-                localStorage.setItem('access_token', res.data.access_token);
+                sessionStorage.setItem('access_token', res.data.access_token);
+                sessionStorage.setItem('refresh_token', res.data.refresh_token);
                 setNavigate(true);
             } else {
                 swal({
@@ -62,6 +63,7 @@ const Home = () => {
                         <button type="submit">Login</button> 
                     </form>
                 </div>
+                <h3> Don't have an account? <a href="/SignUp">Sign Up </a></h3>
             </div>
             <div className="image-container">
                 <img src="https://live.staticflickr.com/65535/51195628139_81d91eb537_b.jpg" alt="PotLuck" />

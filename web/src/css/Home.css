@@ -13,7 +13,7 @@
     width: 40%;
 	text-decoration: none;
 	padding-left: 4%;
-	padding-top: 6%;
+	padding-top: 3%;
 }
 
 .log-in-container h1 {
@@ -26,6 +26,13 @@
     font-size: 1.2rem;
     font-family: 'Helvetica';
     margin: 0 2em;
+
+}
+
+.log-in-container h3 {
+    font-size: 0.8rem;
+    font-family: 'Helvetica';
+    margin: 0 3em;
 
 }
 

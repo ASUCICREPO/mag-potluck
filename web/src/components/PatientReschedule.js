@@ -42,7 +42,7 @@ const PatientReschedule = () => {
             new_date: newdate + ' ' + data.time
         })
         .then(() => {
-            localStorage.setItem('action', "updated");
+            sessionStorage.setItem('action', "updated");
             navigate(PatientFinalPath)
 
         });
@@ -52,7 +52,7 @@ const PatientReschedule = () => {
     const navigate = useNavigate();
 
     var options = { year: 'numeric', month: 'long', day: 'numeric' };
-    const origappointment = new Date(localStorage.getItem('appointment')).toLocaleDateString([],options);
+    const origappointment = new Date(sessionStorage.getItem('appointment')).toLocaleDateString([],options);
     const [appointment_date, setAppointmentDate] = useState(origappointment);
     useEffect(() => {
     apiGet();

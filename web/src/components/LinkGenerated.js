@@ -10,23 +10,23 @@ const LinkGenerated = () => {
     const [hEmail, setHEmail] = useState("");
 
     useEffect (() => {
-        if(!localStorage.getItem('access_token')){
+        if(!sessionStorage.getItem('access_token')){
             navigate('/LogIn');
         }
         
-        if(!localStorage.getItem('patientdata')){
+        if(!sessionStorage.getItem('patientdata')){
             navigate('/generateLink');
         }
     }, [])
 
-    var raw =  JSON.parse(localStorage.getItem('patientdata'));
+    var raw =  JSON.parse(sessionStorage.getItem('patientdata'));
 
     const onSubmit = async event => {
         event.preventDefault();
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
-        var raw =  JSON.parse(localStorage.getItem('patientdata'));
-        var topost = JSON.stringify({"recipient": hEmail, "link": raw.link, "patient_name": raw.name,"healthcareName": raw.healthcareName, "access_token": localStorage.getItem('access_token')});
+        var raw =  JSON.parse(sessionStorage.getItem('patientdata'));
+        var topost = JSON.stringify({"recipient": hEmail, "link": raw.link, "patient_name": raw.name,"healthcareName": raw.healthcareName, "access_token": sessionStorage.getItem('access_token')});
         var requestOptions = {
             method: 'POST',
             headers: myHeaders,

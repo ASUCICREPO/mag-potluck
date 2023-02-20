@@ -10,7 +10,7 @@ const LinkPage = () => {
     const navigate = useNavigate()
     useEffect (() => {
         
-        if(!localStorage.getItem('access_token')){
+        if(!sessionStorage.getItem('access_token')){
             navigate('/LogIn');
         }
     }, [])
@@ -27,7 +27,7 @@ const LinkPage = () => {
         event.preventDefault();
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
-        var raw = JSON.stringify({"f_name": fName, "m_name": mName, "l_name": lName, "h_name": hName, "access_token": localStorage.getItem('access_token'), "initial_entry_ts": Date.now().toString()});
+        var raw = JSON.stringify({"f_name": fName, "m_name": mName, "l_name": lName, "h_name": hName, "access_token": sessionStorage.getItem('access_token'), "initial_entry_ts": Date.now().toString()});
         var requestOptions = {
             method: 'POST',
             headers: myHeaders,
@@ -42,7 +42,7 @@ const LinkPage = () => {
             if (data.statusCode) {
                 var datajson = JSON.parse(data.body)
                 var patientdata = {"name": fName + " " + mName + " " + lName, "link": datajson.link, "healthcareName": hName}
-                localStorage.setItem('patientdata', JSON.stringify(patientdata));
+                sessionStorage.setItem('patientdata', JSON.stringify(patientdata));
                 setNavigate(true);
             } else {
                 swal({

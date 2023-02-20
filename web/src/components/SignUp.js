@@ -31,7 +31,7 @@ const SignUp = () => {
         .then((data) => {
             console.log(data);
             if (data.success) {
-                localStorage.setItem('username', email);
+                sessionStorage.setItem('username', email);
                 setNavigate(true);
 
             } else {
@@ -65,6 +65,7 @@ const SignUp = () => {
                         <button type="submit">SignUp</button> 
                     </form>
                 </div>
+                <h3> Already have an account? <a href="/LogIn">Log In</a></h3>
             </div>
             <div className="image-container">
                 <img src="https://live.staticflickr.com/65535/51195628139_81d91eb537_b.jpg" alt="PotLuck" />

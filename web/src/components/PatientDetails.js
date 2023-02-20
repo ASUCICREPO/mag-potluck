@@ -22,7 +22,7 @@ const PatientDetails = () => {
 
     const onSubmit = async event => {
         event.preventDefault();
-        localStorage.setItem('appointment', date + ' ' + time );
+        sessionStorage.setItem('appointment', date + ' ' + time );
         navigate(PatientModifyPath)
     };
     

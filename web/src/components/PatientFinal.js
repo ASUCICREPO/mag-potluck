@@ -5,7 +5,7 @@ import { FaCheckCircle } from 'react-icons/fa';
 
 const PatientModify = () => {
 
-    var action = localStorage.getItem('action')
+    var action = sessionStorage.getItem('action')
     return(
         <>
         <div className="mid-section">
