@@ -54,7 +54,7 @@ transportation provider.
 
 ### Transit Service Provider
 
-1. Launch a browser and got to the URL.
+1. Launch a browser and go to the URL.
 2. By default, The `login` page will be loaded.
    ![Login](Docs/login.png)
 3. Go to the `signup` URL to register a new transit user.
@@ -63,8 +63,8 @@ transportation provider.
    ![Verify email](Docs/verify_email.png)
 5. Input the One Time Password that you have got in your email used for registration in step 5.
 6. Now you have successfully created your account as a transit provider in this web portal.
-7. Once the email is confirmed, you will be redirected to the `login` page (Shown in step 3).
-8. Login here using the `email` and `password` you used for registration in step 5.
+7. Once the email is confirmed, you will be redirected to the `login` page (Shown in step 2).
+8. Login here using the `email` and `password` you used for registration in step 4.
 9. Once you have successfully logged in, you will land on the page to input patient details.
    ![Input patient](Docs/input_patient.png)
 10. Fill in all the details for the patient and click on the `Generate Link` button.
@@ -99,5 +99,17 @@ Healthcare providers, or can directly be sent directly as an email from this pag
 2. Anjali Srivastava
    - LinkedIn: https://www.linkedin.com/in/anjalisrivastava/
    - GitHub: https://github.com/AnjaliSrivastava29
+
+### Architect
+
+Arun Arunachalam
+- LinkedIn: https://www.linkedin.com/in/arunarunachalam/
+- GitHub: https://github.com/
+
+### Program Manager
+
+Jubleen Vilku
+- LinkedIn: https://www.linkedin.com/in/jubleen-vilku/
+- GitHub: https://github.com/
 
 ## License(MIT) 
