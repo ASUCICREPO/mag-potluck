@@ -5,6 +5,7 @@ web/node_modules
 web/build/static/*
 web/build/asset-manifest.json
 web/package-lock.json
+web/src/components/GlobalVariables.js
 
 # CDK asset staging directory
 .cdk.staging
