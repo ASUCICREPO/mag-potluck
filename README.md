@@ -28,16 +28,17 @@ transportation provider.
 3. Configure AWS SES to send emails
    - Make sure that the SES is configured in the same region where you plan to deploy the service
    - Follow steps here to configure SES : [Moving out of the Amazon SES sandbox](https://docs.aws.amazon.com/ses/latest/dg/request-production-access.html)
-4. Update the file [configuration.yaml](configuration.yaml) with required configuration data.
+4. Update the file [configuration.yaml](Backend/configuration.yaml) with required configuration data.
    ```yaml
       ID: id_to_identify_resources_in_aws
       userPoolName: userpool_name
       Email: some_email@email.com
+      Region: valid_aws_region
    ```
    - `ID` is used as an identifier to all the resources created in AWS cloud. This ID will be appended to the name of all resources that are deployed for this project
    - `userPoolName` is the name of the user-pool created in AWS cognito for user authentication. This can be any string value that makes sense to the user.
    - `Email` is the email address that is verified in AWS SES (step 3). The recipients of the emails from this service will see this as the from address.
-5. The stack name and region of deployment can be changed by updating the file [bin/infrastructure.ts](bin/infrastructure.ts)
+   - `Region` is a valid aws region where the resources are to be deployed
 
 ### Linux/Unix
 
@@ -130,12 +131,10 @@ Healthcare providers, or can directly be sent directly as an email from this pag
 
 Arun Arunachalam
 - LinkedIn: https://www.linkedin.com/in/arunarunachalam/
-- GitHub: https://github.com/
 
 ### Program Manager
 
 Jubleen Vilku
 - LinkedIn: https://www.linkedin.com/in/jubleen-vilku/
-- GitHub: https://github.com/
 
 ## License(MIT) 
