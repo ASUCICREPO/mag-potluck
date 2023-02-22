@@ -2,10 +2,12 @@
 
 ## Transit Service Provider
 
-1. Launch a browser and got to the URL.
-2. By default, The `login` page will be loaded.
+1. If you attempt a new deployment, it outputs a link which hosts the system. Copy that URL.
+2. Launch a browser and got to the URL.
+3. By default, The `login` page will be loaded. This is for the Transit side authentication.
    ![Login](Docs/login.png)
-3. Go to the `signup` URL to register a new transit user.
+      a. If you already have an account, put in your registered Email and password in the textboxes and click on Login. 
+      b. If you need to register a new user, go to the `signup` URL 
    ![Signup](Docs/signup.png)
 4. Fill in the required details, and press the `SignUp` button. This will take you to the `email verification` page.
    ![Verify email](Docs/verify_email.png)
