@@ -1,4 +1,4 @@
-global.baseApi = "https://earzkgb41e.execute-api.us-east-1.amazonaws.com/prod/";
+global.baseApi = "https://l9317ovb9g.execute-api.us-east-1.amazonaws.com/prod/";
 global.apiEndpoints = {
     'healthemail': global.baseApi + "health/sendmail",
     'getpatientdetails': global.baseApi + "health/getpatientdetails",

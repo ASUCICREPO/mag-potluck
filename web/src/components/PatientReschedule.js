@@ -22,7 +22,8 @@ const PatientReschedule = () => {
             appointment_status: "Reschedule",
             scheduled_ts: data.date + ' ' + data.time,
             id: id,
-            update_ts: Date.now().toString()
+            update_ts: Date.now().toString(),
+            appointment_type: data.apttype
         })
         .then(res=>{
             console.log(res.data)
@@ -39,7 +40,8 @@ const PatientReschedule = () => {
             initial_date: origappointment,
             healthcare_name: data.healthcareprovidername,
             //healthcare_number: "+000000000000000",
-            new_date: newdate + ' ' + data.time
+            new_date: newdate + ' ' + data.time,
+            type: data.apttype
         })
         .then(() => {
             sessionStorage.setItem('action', "updated");
