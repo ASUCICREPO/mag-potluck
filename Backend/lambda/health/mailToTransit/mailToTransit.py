@@ -29,7 +29,6 @@ def lambda_handler(event, context):
     name = event['patient_name']
     action = event['action']
     appointment_date = event['initial_date']
-    appointment_type = event['type']
     healthcare_name = event['healthcare_name']
 
     # healthcare_number = event['healthcare_number']
@@ -45,6 +44,7 @@ def lambda_handler(event, context):
         '''.format(t_provider, name, appointment_date, healthcare_name)
     elif "update" == action:
         new_date = event['new_date']
+        appointment_type = event['type']
         message = '''
         Hello {},
         The appointment for {} on {} has been changed to {} and will be {}. If the new appointment doesn't align with your schedule, please contact {}.

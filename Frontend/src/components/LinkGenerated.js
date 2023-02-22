@@ -38,7 +38,7 @@ const LinkGenerated = () => {
         .then((response) => response.json())
         .then((data) => {
             console.log(data.statusCode);
-            if (data.statusCode == 200) {
+            if (data.statusCode === 200) {
                 swal({
                     title: "",
                     text: "Email Sent!",
