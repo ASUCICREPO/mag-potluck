@@ -49,8 +49,8 @@ transportation provider.
         sudo apt-get install awscli
         sudo apt-get -y install nodejs
         sudo apt install -y npm
-        npm install -g n
-        n 18.13.0
+        sudo npm install -g n
+        sudo n 18.13.0
     ```
 2. Restart the terminal
 3. Configure AWS credentials in your system
