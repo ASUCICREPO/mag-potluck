@@ -28,17 +28,6 @@ transportation provider.
 3. Configure AWS SES to send emails
    - Make sure that the SES is configured in the same region where you plan to deploy the service
    - Follow steps here to configure SES : [Moving out of the Amazon SES sandbox](https://docs.aws.amazon.com/ses/latest/dg/request-production-access.html)
-4. Update the file [configuration.yaml](Backend/configuration.yaml) with required configuration data.
-   ```yaml
-      ID: id_to_identify_resources_in_aws
-      userPoolName: userpool_name
-      Email: some_email@email.com
-      Region: valid_aws_region
-   ```
-   - `ID` is used as an identifier to all the resources created in AWS cloud. This ID will be appended to the name of all resources that are deployed for this project
-   - `userPoolName` is the name of the user-pool created in AWS cognito for user authentication. This can be any string value that makes sense to the user.
-   - `Email` is the email address that is verified in AWS SES (step 3). The recipients of the emails from this service will see this as the from address.
-   - `Region` is a valid aws region where the resources are to be deployed
 
 ### Linux/Unix
 
@@ -59,22 +48,37 @@ transportation provider.
    ```
    Running this command will show prompts to add the aws account credentials.   
 4. Clone or Download the Zip of this repository
-5. Run commands to install NPM dependencies once you are inside the directory
+5. change your directory to the project directory
+   ```shell
+      cd mag-potluck
+   ```
+6. Update the file [configuration.yaml](Backend/configuration.yaml) with required configuration data.
+   ```yaml
+      ID: id_to_identify_resources_in_aws
+      userPoolName: userpool_name
+      Email: some_email@email.com
+      Region: valid_aws_region
+   ```
+   - `ID` is used as an identifier to all the resources created in AWS cloud. This ID will be appended to the name of all resources that are deployed for this project
+   - `userPoolName` is the name of the user-pool created in AWS cognito for user authentication. This can be any string value that makes sense to the user.
+   - `Email` is the email address that is verified in AWS SES (step 3). The recipients of the emails from this service will see this as the from address.
+   - `Region` is a valid aws region where the resources are to be deployed
+7. Run commands to install NPM dependencies.
    ```shell
       sudo npm install -g aws-cdk
       sudo npm install ts-node typescript --save-dev --global
       sudo npm install
    ```
-6. Provide execution permission to the `Deploy.ts` script
+8. Provide execution permission to the `Deploy.ts` script
    ```shell
       sudo chmod +x ./Deploy.ts
    ```
-7. Run the script for deployment
+9. Run the script for deployment
    ```shell
       ./deploy.ts
    ```
-8. The deployment will take around 15 minutes to complete. The screen might look frozen at times, but be patient. 
-9. Once the deployment is complete, we can obtain the URL for the deployed website from the output of the `Deploy.ts` script
+10. The deployment will take around 15 minutes to complete. The screen might look frozen at times, but be patient. 
+11. Once the deployment is complete, we can obtain the URL for the deployed website from the output of the `Deploy.ts` script
    ![Deployment Output](Docs/deployment_outputs.png)
 
 ## User Guide / How to use
