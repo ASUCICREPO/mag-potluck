@@ -61,13 +61,13 @@ transportation provider.
 4. Clone or Download the Zip of this repository
 5. Run commands to install NPM dependencies once you are inside the directory
    ```shell
-      npm install -g aws-cdk
-      npm install ts-node typescript --save-dev --global
-      npm install
+      sudo npm install -g aws-cdk
+      sudo npm install ts-node typescript --save-dev --global
+      sudo npm install
    ```
 6. Provide execution permission to the `Deploy.ts` script
    ```shell
-      chmod +x ./Deploy.ts
+      sudo chmod +x ./Deploy.ts
    ```
 7. Run the script for deployment
    ```shell
