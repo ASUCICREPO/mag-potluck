@@ -3,7 +3,8 @@
 ## Deployment 
 
 ### Linux/Unix
-1. Install dependencies
+1. Open the terminal.
+2. Install dependencies by pasting following code - 
     ```shell
         sudo apt-get update
         sudo apt install curl
@@ -13,10 +14,10 @@
         npm install -g n
         n 18.13.0
     ```
-2. Restart the terminal
-3. Configure AWS credentials in your system
+2. Restart the terminal.
+3. Configure AWS credentials in your system by using `aws configure` and entering your AWS Access Key ID and Secret Access Key. 
 4. Clone or Download the Zip of this repository
-5. Run commands to install NPM dependencies once you are inside the directory
+5. Run following commands to install NPM dependencies once you are inside the directory of the repository through your Terminal
    ```shell
       npm install -g aws-cdk
       npm install ts-node typescript --save-dev --global
@@ -32,4 +33,4 @@
    ```
 8. The deployment will take around 15 minutes to complete. The screen might look frozen at times, but be patient. 
 9. Once the deployment is complete, we can obtain the URL for the deployed website from the output of the `Deploy.ts` script
-   ![Deployment Output](Docs/deployment_outputs.png)
+   ![Deployment Output](deployment_outputs.png)
