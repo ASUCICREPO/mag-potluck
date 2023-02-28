@@ -36,7 +36,7 @@
    ```shell
       cd mag-potluck
    ```
-6. Update the file [configuration.yaml](Backend/configuration.yaml) with required configuration data.
+6. Update the file [configuration.yaml](../Backend/configuration.yaml) with required configuration data.
    ```yaml
       ID: id_to_identify_resources_in_aws
       userPoolName: userpool_name
