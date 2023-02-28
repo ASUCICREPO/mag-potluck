@@ -34,7 +34,7 @@ const Navbar = () => {
         <header>
             <div className="container">
                 <div className="pot-header"><p onClick={() => {navigate(`/`)}}>POTLUCK</p>
-                {(location.pathname =="/generateLink" || location.pathname =="/LinkGenerated")  && 
+                {(location.pathname ==="/generateLink" || location.pathname ==="/LinkGenerated")  &&
                 <span className="right" onClick={() => {logout()}}>Logout</span>
                 }
                 </div>

@@ -22,6 +22,7 @@ transportation provider.
 
 ## [User Guide / How to use](Docs/UserGuide.md)
 
+
 ## Change Log
 
 ## Lessons Learned
@@ -36,5 +37,15 @@ transportation provider.
 2. Anjali Srivastava
    - LinkedIn: https://www.linkedin.com/in/anjalisrivastava/
    - GitHub: https://github.com/AnjaliSrivastava29
+
+### Architect
+
+Arun Arunachalam
+- LinkedIn: https://www.linkedin.com/in/arunarunachalam/
+
+### Program Manager
+
+Jubleen Vilku
+- LinkedIn: https://www.linkedin.com/in/jubleen-vilku/
 
 ## License(MIT) 

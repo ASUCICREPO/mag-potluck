@@ -13,7 +13,8 @@ const PatientCancel = () => {
             appointment_status: "Cancel",
             update_ts: Date.now().toString(),
             scheduled_ts: "",
-            id: id
+            id: id,
+            appointment_type: "Cancel"
         })
         .then(res=>{
             console.log(res.data)

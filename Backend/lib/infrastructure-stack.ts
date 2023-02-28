@@ -17,7 +17,7 @@ export class InfrastructureStack extends cdk.Stack {
 
         const config = yaml.parse(fs.readFileSync('configuration.yaml', 'utf8'))
         const websitedeployer = new StaticSiteWithCdn(this, config.ID + 'web')
-        websitedeployer.deploy("web/build")
+        websitedeployer.deploy("../Frontend/build")
 
 
         const table = new dynamodb.Table(this, 'Table', {
