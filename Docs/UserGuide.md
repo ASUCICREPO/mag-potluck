@@ -2,16 +2,16 @@
 
 ## Transit Service Provider
 
-1. If you attempt a new deployment, it outputs a link which hosts the system. Copy that URL.
-2. Launch a browser and got to the URL.
+1. Attempting a new deployment outputs a link which hosts the system. We need to copy that URL.
+2. Launch a browser, paste the URL and Enter.
 3. By default, The `login` page will be loaded. This is for the Transit side authentication.
    ![Login](Docs/login.png)
       a. If you already have an account, put in your registered Email and password in the textboxes and click on Login. 
-      b. If you need to register a new user, go to the `signup` URL 
+      b. If you need to register a new user, go to the `signup` link through the message that is displayed. 
    ![Signup](Docs/signup.png)
 4. Fill in the required details, and press the `SignUp` button. This will take you to the `email verification` page.
    ![Verify email](Docs/verify_email.png)
-5. Input the One Time Password that you have got in your email used for registration in step 5.
+5. Input the One Time Password here that you must have got in the email used for registration in step 5.
 6. Now you have successfully created your account as a transit provider in this web portal.
 7. Once the email is confirmed, you will be redirected to the `login` page (Shown in step 3).
 8. Login here using the `email` and `password` you used for registration in step 5.
