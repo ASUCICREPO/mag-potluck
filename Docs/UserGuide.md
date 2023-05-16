@@ -32,5 +32,5 @@
 6. Clicking on the `Reschedule` button will ask you to input the new appointment details by entering the updated date and time.
    ![Reschedule](reschedule.png)
 6. Clicking on the `submit` button after filling in the new details, will send a notification via email, to the transit provider, about the updated appointment details.
-7. Once you have `cancelled` or `rescheduled` the appointment, you will be taken to the a page confirming your action.
+7. Once you have `cancelled` or `rescheduled` the appointment, you will be taken to a page confirming your action.
    ![Confirmation](confirmation.png)
