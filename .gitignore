@@ -1,0 +1,21 @@
+!jest.config.js
+!package-lock.json
+node_modules/
+Backend/node_modules/
+Frontend/node_modules/
+
+
+Frontend/build/static/*
+Frontend/build/asset-manifest.json
+Frontend/package-lock.json
+Frontend/src/components/GlobalVariables.js
+
+# CDK asset staging directory
+.cdk.staging
+Backend/cdk.out
+.idea
+Backend/cdk-outputs.json
+Backend/*.d.ts
+Backend/lambda/experimental/*
+Backend/package-lock.json
+Backend/jest.config.js

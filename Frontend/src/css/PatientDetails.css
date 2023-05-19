@@ -1,0 +1,110 @@
+.top-section {
+    margin-top: -10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-decoration: none;
+}
+
+.info-header p {
+    /* margin: 20px 40px; */
+    margin-top: 100px;
+    margin-left: 40px;
+    margin-right: 40px;
+    padding: 0 100px;
+    padding-top: 40px;
+    transition: transform 80ms ease-in;
+    color: grey;
+    font-family: 'Helvetica';
+    font-size: 25px;
+    text-decoration: none;
+}
+
+.info-actual p {
+    /* margin: 1px 40px; */
+    margin-top: 0;
+    margin-left: 40px;
+    margin-right: 40px;
+    padding: 0 100px;
+    transition: transform 80ms ease-in;
+    font-family: 'Helvetica';
+    font-size: 25px;
+    text-decoration: none;
+}
+
+.middle-section {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: grey;
+    margin-top: auto;
+    margin-bottom: 0;
+    padding-top: 45px;
+    text-decoration: none;
+}   
+
+.middle-heading p {
+    transition: transform 80ms ease-in;
+    font-family: 'Helvetica';
+    font-size: 25px;
+    text-decoration: none;
+
+}
+
+.bottom-info {
+    text-decoration: none;
+    color: grey;
+    margin: 0 auto;
+    width: fit-content;
+    font-family: 'Helvetica';
+    font-size: 25px;
+}
+
+input {
+    background-color: #F2F2F2;
+    color: black;
+    border: 2px solid grey;
+    border-radius: 10px;
+    text-decoration: none;
+    width: 290px;
+}
+
+.bottom-info select {
+    margin: 1em 3em;
+    padding: 12px 15px;
+    display: flex;
+    width:120%;
+    justify-content: space-around;
+    background-color: #F2F2F2;
+    color: black;
+    border: 2px solid grey;
+    border-radius: 10px;
+    text-decoration: none;
+    width: 290px;
+}
+
+.bottom-options {
+    display: flex;
+    text-decoration: none;
+    align-items: center;
+    color: grey;
+    width: fit-content;
+    margin: auto;
+    font-family: 'Helvetica';
+    font-size: 25px;
+}
+
+button {
+    background-color: #73cfe2;
+    text-decoration: none;
+    color: black;
+    border: 2px solid grey;
+    border-radius: 10px;
+    font-size: 16px;
+    width: 290px;
+    
+}
+
+NavLink {
+    text-decoration: none;
+}
